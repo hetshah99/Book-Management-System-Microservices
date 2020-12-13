@@ -1,0 +1,2 @@
+DB Name = book-management
+Table Name = stock_management
