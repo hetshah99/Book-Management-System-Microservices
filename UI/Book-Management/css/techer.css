@@ -1,0 +1,53 @@
+.navbar-default {
+    background-color: #4682B4;
+    border-color: #e7e7e7;
+}
+.container-fluid ul li a i::before{
+	font-size:20px;	
+	}
+.container-fluid ul li a {
+		font-size:20px;
+		
+}
+.navbar-default .navbar-nav > li > a {
+   color:white;
+}
+.navbar-default .navbar-brand {
+    color: white;
+	font-weight:bold;
+}
+.footer{
+	clear:both;
+	text-align:center;
+	margin-top:20px;
+}
+#side_Menu{
+	font-size:17px;
+	background:#4682B4;
+}
+.nav > li > a:focus, .nav > li > a:hover {
+    text-decoration: none;
+    background-color: #eee;
+
+}
+.container-fluid ul li a {
+    font-size: 15px;
+    color: #fff;
+}
+.nav > li > a:focus, .nav > li > a:hover {
+    text-decoration: none;
+    background-color: #fff;
+	color:black;
+}
+.nav-pills > li > a {
+    border-radius: 0px;;
+}
+.table {
+    background: white;
+}
+.re{
+	padding:2px;
+	margin-right:1px;
+}
+
+

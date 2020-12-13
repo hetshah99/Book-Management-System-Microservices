@@ -1,0 +1,33 @@
+/*Style page */
+body{
+	background:url("../images/background.png");
+}
+.line{
+	margin-top:50px;
+	background:#4B4B4B;
+	padding:10px;
+	border-radius:15px;
+	margin-bottom:50px;
+	color:#A8A8A8;
+	box-shadow: 3px 5px 11px 13px #858585;
+}
+.footer{
+	margin-top:60px;
+	background:#4B4B4B;
+	padding:20px;
+	border-radius:15px;
+	color:#A8A8A8;
+	text-align:center;
+	font-size:17px;
+}
+.st{
+	margin-top: 104px;
+	margin-bottom: 111px
+
+}
+.st a i::before{
+	font-size:145px;	
+}
+#left{
+	margin-right:50px;
+}

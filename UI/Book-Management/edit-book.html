@@ -1,0 +1,113 @@
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Student Manage System</title>
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link href="css/font-awesome.css" rel="stylesheet">
+	<link href="css/techer.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <h1 class="text-center">Edit Book</h1>
+	<div class="container-fluid">
+        <div class="row">
+        	<div class="col-sm-2"></div>
+        	<div class="col-sm-8">
+        		
+        		<form id="edit-form" method="post">
+				
+        			<div class="form-group">	
+						<label for="book_id">Book Id:</label>
+						<input type="text" class="form-control" id="book_id" placeholder="Enter ID" name="book_id" readonly>
+			  		</div>
+
+					<div class="form-group">	
+						<label for="book_name">Book Name:</label>
+						<input type="text" class="form-control" id="book_name" placeholder="Enter Name" name="book_name">
+			  		</div>
+			  
+				  <div class="form-group">
+					<label for="author_name">Author Name:</label>
+					<input type="text" class="form-control" id="author_name" placeholder="Enter Name" name="author_name">
+				  </div>
+
+			  <div class="form-group">
+				<label for="quantity">Quantity:</label>
+				<input type="text" class="form-control" id="quantity" placeholder="Enter Class" name="quantity">
+			  </div>
+
+			  <div class="form-group">
+				<label for="Price">Price:</label>
+				<input type="text" class="form-control" id="price" placeholder="Enter Price"  name="price">
+			  </div>
+
+				<button type="submit" class="btn btn-success" name="submit" id="update-button">Update</button>
+				<a href="index.html">
+					Back to Books List
+				</a>
+			
+			</form>
+
+        	</div>
+        	<div class="col-sm-2"></div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+
+    	$('#book_id').val(GetParameterValues('book_id'));
+
+        function GetParameterValues(param) {  
+            var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');  
+            for (var i = 0; i < url.length; i++) {  
+                var urlparam = url[i].split('=');  
+                if (urlparam[0] == param) {  
+                    return urlparam[1];  
+                }  
+            }  
+        }
+
+    	$("#update-button").on("click", function(e){
+			e.preventDefault();
+			var arr = $("#edit-form").serializeArray();
+			
+			var obj = {};
+			var flag = true;
+			for(var a=0;a <arr.length; a++)
+			{
+				if(arr[a].value=="")
+					flag = false;
+				obj[arr[a].name] = arr[a].value;
+			}
+			
+			var json_string = JSON.stringify(obj);
+		
+			if(flag)
+			{
+				$.ajax({
+					type: "PUT",
+	    			cors: true,
+	    			data: json_string,
+	    			contentType: "application/json",
+	  				dataType: 'json',
+	    			url: "http://127.0.0.1:3000/books/update"
+				})
+				.done(function(response){
+	    			alert(response);
+	    		})
+	    		.fail(function(xhr, textStatus, errorThrown){
+	    			alert("Error : " + errorThrown);
+	    		});
+			}
+			else { alert("All Fields are Mandatory!"); }
+      });
+
+    </script>
+
+</body>
+
+</html>

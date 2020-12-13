@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Inventory Management System</title>
+    <link rel="stylesheet" type="text/css" href="style1.css">
+</head>
+<body>
+
+<div class="main">
+    <img src="img-1.png" class="logo" width="259" height="292" alt="Background">
+    <form onsubmit="register()" id="loginForm" method="POST">
+        <label for="username">Username </label><br>
+        <input type="text" id="username" name="username" placeholder="Enter UserName..." autocomplete="on"
+               pattern="^[a-zA-Z0-9]{5,12}$" title="It must be alphanumeric of length 5-15" autofocus required>
+        <br><br>
+
+        <label for="email">Email </label><br>
+        <input type="text" id="email" name="email" placeholder="Email Address..." autocomplete="on"
+               pattern="[a-z0-9A-Z_.-]+@[a-z0-9]+\.[a-z]{2,8}(\.[a-z]{2,5})?$"
+               title="Must be of format(karan@gmail.com, karan@edu.co.in)" required>
+        <br><br>
+
+        <label for="contactNo">Contact Number </label><br>
+        <input type="text" id="contactNo" name="contactNo" placeholder="Enter Contact No...." autocomplete="on"
+               pattern="^\d{10}$" title="Must have exactly 10 digits" required>
+        <br><br>
+
+        <label for="password">Password </label><br>
+        <input type="password" id="password" name="password" placeholder="********" autocomplete="off"
+               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+               title="It must contain 8 characters containing at least one lowercase, one uppercase and one number"
+               required>
+        <br><br>
+
+        <label for="confirmPassword">Verify Password </label><br>
+        <input type="password" id="confirmPassword" name="confirmPassword" placeholder="********" autocomplete="off"
+               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="It should be same as above password" required>
+        <br><br>
+
+        <input type="submit" value="Sign Up">
+        <a href="login.html">Login</a>
+    </form>
+</div>
+<h1 style="color:red; font-size: 2em;"><i><u>Inventory Management System</u></i></h1>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script>
+
+    $("#loginForm").submit(function (e) {
+        e.preventDefault();
+    });
+
+    function register() {
+        let password = $('#password');
+        let confirmedPassword = $('#confirmPassword');
+
+        if (password.val() !== confirmedPassword.val()) {
+            alert("Passwords don't match!");
+        } else {
+            let userData = {
+                'username': $('#username').val(),
+                'email': $('#email').val(),
+                'contactNo': $('#contactNo').val(),
+                'password': password.val(),
+                'type': 'customer'
+            };
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify({'data': userData}),
+                cors: true,
+                url: "http://127.0.0.1:3000/register"
+            })
+                .done(function (response) {
+                    if(response.error) {
+                        alert(response.error);
+                    }
+                    else {
+                        alert(response.message);
+                    }
+                })
+                .fail(function (xhr, textStatus, errorThrown) {
+                    alert("Error : " + errorThrown);
+                });
+        }
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Book Management</title>
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link href="css/font-awesome.css" rel="stylesheet">
+	<link href="css/techer.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  
+    <h1 class="text-center">Add Books</h1>
+	<div class="container-fluid">
+        <div class="row">
+        	<div class="col-sm-2"></div>
+			<div class="col-sm-8">
+			<form method="post" id="addForm">
+				
+				<div class="form-group">
+				<label for="name">Book Name:</label>
+				<input type="text" class="form-control" id="book_name" placeholder="Enter Name" name="book_name" required>
+			  </div>
+			  
+			  <div class="form-group">
+				<label for="name">Author Name:</label>
+				<input type="text" class="form-control" id="author_name" placeholder="Enter Name" name="author_name" required>
+			 
+			  </div>
+			  
+			  <div class="form-group">
+				<label for="quantity">Quantity:</label>
+				<select id="quantity" name="quantity" required>
+				<option value="1" selected>1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="4">5</option>
+				<option value="4">6</option>
+			  </select>
+			  </div>
+			  
+			  <div class="form-group">
+				<label for="price">Price:</label>
+				<input type="number" class="form-control" id="price" placeholder="3"  name="price" required>
+			  </div>
+		
+		
+			<button type="submit" class="btn btn-success" id="submit-b">Submit</button>
+			<a href='index.html'>Books List</a>
+			
+			</form>
+			</div>
+            <div class="col-sm-2"></div>
+            </div>
+        </div>
+	
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type = "text/javascript">
+
+	$(document).ready(function(){
+	
+	
+      $("#submit-b").on("click",function(e){
+			e.preventDefault();
+			var arr = $("#addForm").serializeArray();
+			
+			var obj = {};
+			var flag = true;
+			for(var a=0;a <arr.length; a++)
+			{
+				if(arr[a].value=="")
+					flag = false;
+				obj[arr[a].name] = arr[a].value;
+			}
+			
+			var json_string = JSON.stringify(obj);
+		
+			if(flag)
+			{
+				$.ajax({
+					type: "POST",
+	    			cors: true,
+	    			data: json_string,
+	    			contentType: "application/json",
+	  				dataType: 'json',
+	    			url: "http://127.0.0.1:3000/books/add"
+				})
+				.done(function(response){
+	    			alert(response);
+	    		})
+	    		.fail(function(xhr, textStatus, errorThrown){
+	    			alert("Error : " + errorThrown);
+	    		});
+			}
+			else { alert("All Fields are Mandatory!"); }
+      });
+      
+	});
+
+</script>
+
+	</body>
+	</html>
