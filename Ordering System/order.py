@@ -39,7 +39,7 @@ def sign_up():
         
         
         #RABBITMQ PUBLISH QUEUE1
-        url = os.environ.get('CLOUDAMQP_URL', 'amqps://ugsynvns:zl-xQ-7yv9OHkXk9s7BQizgUBGBSzTff@fox.rmq.cloudamqp.com/ugsynvns')
+        url = os.environ.get('CLOUDAMQP_URL', '')
         params = pika.URLParameters(url)
         connection2 = pika.BlockingConnection(params)
         channel = connection2.channel()
@@ -53,7 +53,7 @@ def sign_up():
         
         #RABBITMQ SUBSCRIBE QUEUE2
         time.sleep(15)
-        url = os.environ.get('CLOUDAMQP_URL', 'amqps://ugsynvns:zl-xQ-7yv9OHkXk9s7BQizgUBGBSzTff@fox.rmq.cloudamqp.com/ugsynvns')
+        url = os.environ.get('CLOUDAMQP_URL', '')
         params = pika.URLParameters(url)
         connection2 = pika.BlockingConnection(params)
         channel = connection2.channel()
