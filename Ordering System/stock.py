@@ -25,7 +25,7 @@ def order():
     
     print("hi")
     #RABBITMQ SUBSCRIBE QUEUE1
-    url = os.environ.get('CLOUDAMQP_URL', 'amqps://ugsynvns:zl-xQ-7yv9OHkXk9s7BQizgUBGBSzTff@fox.rmq.cloudamqp.com/ugsynvns')
+    url = os.environ.get('CLOUDAMQP_URL', '')
     params = pika.URLParameters(url)
     connection2 = pika.BlockingConnection(params)
     channel = connection2.channel() # start a channel
@@ -66,7 +66,7 @@ def order():
     else:
         mssg=" product quantity not sufficint"
     print(cquant)
-    url = os.environ.get('CLOUDAMQP_URL', 'amqps://ugsynvns:zl-xQ-7yv9OHkXk9s7BQizgUBGBSzTff@fox.rmq.cloudamqp.com/ugsynvns')
+    url = os.environ.get('CLOUDAMQP_URL', '')
     params = pika.URLParameters(url)
     connection2 = pika.BlockingConnection(params)
     channel = connection2.channel() # start a channel
