@@ -1,0 +1,16 @@
+{
+  "name": "user-management-service",
+  "version": "1.0.0",
+  "description": "User Management Service",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "cors": "^2.8.5",
+    "mongodb": "^3.6.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
