@@ -1,0 +1,13 @@
+{
+  "name": "Customer-Support",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "^4.17.1",
+    "google-protobuf": "^3.14.0"
+  },
+  "devDependencies": {
+    "axios": "^0.21.0",
+    "cors": "^2.8.5",
+    "grpc": "^1.24.4"
+  }
+}

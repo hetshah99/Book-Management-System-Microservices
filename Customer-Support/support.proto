@@ -1,0 +1,14 @@
+syntax="proto3";
+
+message userQuery{
+    string email=1;
+    string query=2;
+}
+
+message systemResponse{
+    string response=1;
+}
+
+service customerSupport{
+    rpc userSupport (userQuery) returns (systemResponse);
+}
